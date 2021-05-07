@@ -27,7 +27,7 @@ const tabsAppender = async (selector) => {
       });
     });
 
-    return document.querySelector(selector).append(tabs);
+    return document.querySelector(selector).append(result);
 }
 
 export { Tabs, tabsAppender }
