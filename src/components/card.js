@@ -21,11 +21,9 @@ const Card = (article) => {
 const cardAppender = async selector => {
   const articles = await fetcher("articles").then(res => res.articles)
   const keys = Object.keys(articles);
-  console.log(articles);
   
-  const result = cardCreator(keys, articles);
-  console.log(result)
-  document.querySelector(selector).append(result);
+  return document.querySelector(selector)
+                 .append(cardCreator(keys, articles));
 }
 
 const cardCreator = (keys, content) => {

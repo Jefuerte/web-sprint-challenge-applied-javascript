@@ -2,32 +2,32 @@ import axios from "axios";
 import { fetcher } from "./tools/fetcher";
 
 const Tabs = (topics) => {
-  const topicsCard = document.createElement("div").classList.add("topics");
-  const tab = doucment.createElement("div").classList("tab");
-  const topicsResult = topics.map(topic => topicsCard.append(tab.textContent(topic)));
+  const topicsCard = document.createElement("div");
+  const tab = document.createElement("div");
 
-  return topicsResult;
+  topicsCard.classList.add("topics");
+  tab.classList.add("tab");
+
+  tab.textContent = topics;
+
+  return tab;
 }
 
-const topicFetcher = () => {
-  return axios({
-    method: "post",
-    url: "https://lambda-times-api.herokuapp.com/topics",
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Content-type": "application/json",
-    }
-  })
-  .then((response) => {
-    Tabs(response);
-  })
-  .catch((error) => {
-    console.error(error);
-  }); 
-}
+const fetched = fetcher("topics").then(res => res);
 
-const fetched = fetcher("topics");
-console.log(fetched.then(res => res))
-const tabsAppender = async (selector) => await document.querySelector(selector).append(fetched);
+const tabsAppender = async (selector) => {
+    let result = document.createElement("div");
+    result.classList.add("topics");
+
+    const tabs = await fetcher("topics").then(res => {
+      res.topics.forEach(topic => {
+        const tabs = Tabs(topic);
+        result.append(tabs);
+        console.log(result)
+      });
+    });
+
+    return document.querySelector(selector).append(tabs);
+}
 
 export { Tabs, tabsAppender }
