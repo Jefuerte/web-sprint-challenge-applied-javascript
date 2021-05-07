@@ -1,22 +1,18 @@
 const Card = (article) => {
-  // TASK 5
-  // ---------------------
-  // Implement this function, which should return the markup you see below.
-  // It takes as its only argument an "article" object with `headline`, `authorPhoto` and `authorName` properties.
-  // The tags used, the hierarchy of elements and their attributes must match the provided markup exactly!
-  // The text inside elements will be set using their `textContent` property (NOT `innerText`).
-  // Add a listener for click events so that when a user clicks on a card, the headline of the article is logged to the console.
-  //
-  // <div class="card">
-  //   <div class="headline">{ headline }</div>
-  //   <div class="author">
-  //     <div class="img-container">
-  //       <img src={ authorPhoto }>
-  //     </div>
-  //     <span>By { authorName }</span>
-  //   </div>
-  // </div>
-  //
+  const card = document.createElement("div").classList("card");
+  const headline = document.createElement("div").classList("headline").textContent(article.headline);
+  const author = document.createElement("div").classList("author").textContent(article.author);
+  const imgContainer = document.createElement("div").classList("img-container");
+  const img = document.createElement("img");
+  const authorNameSpan = document.createElement("span");
+
+  card.append(headline);
+  card.append(author);
+  card.append(imgContainer);
+  card.append(img);
+  card.append(authorNameSpan);
+
+  return card;
 }
 
 const cardAppender = (selector) => {
@@ -28,6 +24,27 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
+  const articles = articleFetcher();
+  console.log(articles);
+
+  selector.append(articles);
+}
+
+const articleFetcher = () => {
+  return axios({
+    method: "get",
+    url: "https://lambda-times-api.herokuapp.com/articles",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-type": "application/json",
+    }
+  })
+  .then((response) => {
+    console.log(response)
+  })
+  .catch((error) => {
+    console.error(error);
+  }); 
 }
 
 export { Card, cardAppender }
