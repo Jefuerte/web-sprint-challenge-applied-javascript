@@ -1,3 +1,6 @@
+import axios from "axios";
+import { fetcher } from "./tools/fetcher";
+
 const Tabs = (topics) => {
   const topicsCard = document.createElement("div").classList.add("topics");
   const tab = doucment.createElement("div").classList("tab");
@@ -23,10 +26,8 @@ const topicFetcher = () => {
   }); 
 }
 
-const tabsAppender = (selector) => {
-  return selector.append(topicFetcher("topics"));
-}
+const fetched = fetcher("topics");
 
-
+const tabsAppender = (selector) => document.querySelector(selector).append(fetched);
 
 export { Tabs, tabsAppender }

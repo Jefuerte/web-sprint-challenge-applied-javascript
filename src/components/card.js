@@ -1,3 +1,6 @@
+import axios from "axios";
+import { fetcher } from "./tools/fetcher";
+
 const Card = (article) => {
   const card = document.createElement("div").classList("card");
   const headline = document.createElement("div").classList("headline").textContent(article.headline);
@@ -24,27 +27,10 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
-  const articles = articleFetcher();
-  console.log(articles);
+  const fetched = fetcher("articles");
+  console.log(Promise.resolve(fetched));
 
-  selector.append(articles);
-}
-
-const articleFetcher = () => {
-  return axios({
-    method: "get",
-    url: "https://lambda-times-api.herokuapp.com/articles",
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Content-type": "application/json",
-    }
-  })
-  .then((response) => {
-    console.log(response)
-  })
-  .catch((error) => {
-    console.error(error);
-  }); 
+  document.querySelector(selector).append(articles);
 }
 
 export { Card, cardAppender }
