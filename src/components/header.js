@@ -19,7 +19,12 @@ const Header = (title, date, temp) => {
   console.log(header);
   return header;
 }
-
-const headerAppender = selector => document.querySelector(selector).append(Header("today", "puppies", "98.6F"));
+const today = new Date();
+const headerAppender = selector => {
+  document.querySelector(selector)
+          .append(Header(`${today.getMonth()}\\
+                          ${today.getDay()}\\
+                          ${today.getFullYear()}`, "puppies", "98.6F"));
+}
 
 export { Header, headerAppender }
