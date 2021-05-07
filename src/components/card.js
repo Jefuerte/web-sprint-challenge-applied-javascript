@@ -46,12 +46,7 @@ const cardCreator = (keys, content) => {
   
   keys.forEach(subject => {
     content[subject].forEach(article => {
-      console.log(article)
-      // authorName.textContent = article.authorName;
-      // authorPhoto.setAttribute('src', article.authorPhoto);
-      // headline.textContent = article.headline;
-
-      ledger.append(Card(article));
+      ledger.append(Card(article))
     });
   });
 
