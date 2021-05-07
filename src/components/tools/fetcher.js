@@ -16,14 +16,10 @@ export const fetcher = async contentString => {
     url: `https://lambda-times-api.herokuapp.com/${contentString}`,
     headers: {
       "Access-Control-Allow-Origin": "*",
-      "Content-type": "application/json",
     }
   })
-  .then((response) => {
-    console.log(response.data)
-    return response.data
-  })
-  .catch((error) => {
-    console.error(error);
-  }); 
+    .then(response => {
+      return response.data
+    })
+    .catch(error => console.error(error)); 
 }

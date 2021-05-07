@@ -27,7 +27,7 @@ const topicFetcher = () => {
 }
 
 const fetched = fetcher("topics");
-
-const tabsAppender = (selector) => document.querySelector(selector).append(fetched);
+console.log(fetched.then(res => res))
+const tabsAppender = async (selector) => await document.querySelector(selector).append(fetched);
 
 export { Tabs, tabsAppender }

@@ -20,6 +20,6 @@ const Header = (title, date, temp) => {
   return header;
 }
 
-const headerAppender = selector => document.querySelector(selector).append(Header("now", "puppies", "98.6F"));
+const headerAppender = selector => document.querySelector(selector).append(Header("today", "puppies", "98.6F"));
 
 export { Header, headerAppender }
