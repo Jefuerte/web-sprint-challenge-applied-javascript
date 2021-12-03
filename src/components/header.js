@@ -1,4 +1,35 @@
 const Header = (title, date, temp) => {
+  const header = document.createElement('div');
+  const spanDate = document.createElement('span');
+  const titleH = document.createElement('h1');
+  const spanTemp = document.createElement('span');
+
+  console.log(spanDate);
+
+
+  //textcontent 
+  spanDate.textContent = date;
+  titleH.textContent = title;
+  spanTemp.textContent = temp;
+
+
+  //classes
+
+  header.classList.add('header');
+  spanDate.classList.add('date');
+  spanTemp.classList.add('temp');
+
+  //appendchild
+
+  header.appendChild(spanDate);
+  header.appendChild(spanTemp);
+  header.appendChild(titleH);
+
+
+  console.log(header);
+  return header;
+
+
   // TASK 1
   // ---------------------
   // Implement this function taking `title`, `date` and `temp` as its 3 args and returning the markup below.
