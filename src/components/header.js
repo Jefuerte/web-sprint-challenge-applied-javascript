@@ -1,4 +1,4 @@
-import { node } from "webpack";
+//import { node } from "webpack";
 
 const Header = (title, date, temp) => {
   const headerDiv = document.createElement('div');
