@@ -28,15 +28,18 @@ return divTopic;
   //
 }
 
-
 const tabsAppender = (selector) => {
- const articles = axios.get(`http://localhost:5000/api/topics`);
- articles.then((response) => {
+
+axios.get(`http://localhost:5000/api/topics`).then(response => {
       const tabsContext = document.querySelector(selector);
       const topicRoll = response.data.topics;
       const tabsInfo = Tabs(topicRoll);
       tabsContext.appendChild(tabsInfo);
  })
+ .catch(error => {
+   console.error(error);
+ })
+ .finally(() => console.log)
 
 
   // TASK 4
@@ -46,6 +49,6 @@ const tabsAppender = (selector) => {
   // Find the array of topics inside the response, and create the tabs using the Tabs component.
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
-}
 
+}
 export { Tabs, tabsAppender }

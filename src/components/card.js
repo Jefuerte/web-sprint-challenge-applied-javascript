@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import { data } from 'msw/lib/types/context';
 const Card = (article) => {
    const divCard = document.createElement('div');
    const divHeadline = document.createElement('div');
@@ -54,23 +55,32 @@ const Card = (article) => {
   //
 }
 
-const cardAppender = (selector) => {
-  const chooser = document.querySelector(selector);
-  axios.get(`http://localhost:5000/api/articles`)
-  .then(res => {
-    const articles = res.data.articles;
-    console.log(articles);
-    for (const prop in articles) {
-      console.log(articles[prop])
-      articles[prop].forEach(elem =>{
-        chooser.appendChild(Card(elem));
-      })
-    }
+  const cardAppender = (selector) => {
+    const chooser = document.querySelector(selector)
+    axios.get('http://localhost:5000/api/articles').then(resp => {
+    const bootstrap = resp.data.articles.bootstrap
+    bootstrap.forEach(elem => {
+      chooser.appendChild(Card(elem))
+    })
+    const javascript = resp.data.articles.javascript
+    javascript.forEach(elem => {
+      chooser.appendChild(Card(elem))
+    })
+    const technology = resp.data.articles.technology
+    technology.forEach(elem => {
+      chooser.appendChild(Card(elem))
+    })
+    
+   
+  })
+  .catch(err => {
+   console.error(err)
   })
   
-   .catch(err => {
-     console.error(err)
-   })
+  }
+  
+    
+  
 
   
   // TASK 6
@@ -81,6 +91,6 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
-}
+
 
  export { Card, cardAppender}

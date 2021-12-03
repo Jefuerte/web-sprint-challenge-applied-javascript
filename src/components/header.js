@@ -47,8 +47,8 @@ const Header = (title, date, temp) => {
 }
 
 const headerAppender = (selector) => {
-   let testHeader = Header("Lambda Times", "Dec 03, 2021", "66°");
-     const headerPart = document.querySelector(selector).appendChild(testHeader);
+   let headerPicker = document.querySelector(selector);
+   headerPicker.appendChild(Header('Lambda Times', 'December 3, 2021', '66F'))
 
    
   // TASK 2
