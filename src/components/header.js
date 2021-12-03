@@ -1,10 +1,12 @@
+import { node } from "webpack";
+
 const Header = (title, date, temp) => {
-  const header = document.createElement('div');
+  const headerDiv = document.createElement('div');
   const spanDate = document.createElement('span');
   const titleH = document.createElement('h1');
   const spanTemp = document.createElement('span');
 
-  console.log(spanDate);
+  //console.log(spanDate);
 
 
   //textcontent 
@@ -15,19 +17,19 @@ const Header = (title, date, temp) => {
 
   //classes
 
-  header.classList.add('header');
+  headerDiv.classList.add('header');
   spanDate.classList.add('date');
   spanTemp.classList.add('temp');
 
   //appendchild
 
-  header.appendChild(spanDate);
-  header.appendChild(spanTemp);
-  header.appendChild(titleH);
+  headerDiv.appendChild(spanDate);
+  headerDiv.appendChild(spanTemp);
+  headerDiv.appendChild(titleH);
 
 
-  console.log(header);
-  return header;
+  //console.log(header);
+  return headerDiv;
 
 
   // TASK 1
@@ -45,6 +47,10 @@ const Header = (title, date, temp) => {
 }
 
 const headerAppender = (selector) => {
+   let testHeader = Header("Lambda Times", "Dec 03, 2021", "66°");
+     const headerPart = document.querySelector(selector).appendChild(testHeader);
+
+   
   // TASK 2
   // ---------------------
   // Implement this function taking a css selector as its only argument.
