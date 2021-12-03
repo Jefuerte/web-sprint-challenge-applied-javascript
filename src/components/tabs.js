@@ -1,7 +1,17 @@
 import axios from 'axios';
 
 const Tabs = (topics) => {
- 
+ const divTopic = document.createElement('div');
+ divTopic.classList.add('topics');
+
+topics.forEach((topic) => {
+ const topicPicker = document.createElement('div');
+  topicPicker.classList.add('tab');
+  topicPicker.textContent = topic;
+  divTopic.appendChild(topicPicker);
+})
+
+return divTopic;
   // TASK 3
   // ---------------------
   // Implement this function which takes an array of strings ("topics") as its only argument.
@@ -20,7 +30,13 @@ const Tabs = (topics) => {
 
 
 const tabsAppender = (selector) => {
- 
+ const articles = axios.get(`http://localhost:5000/api/topics`);
+ articles.then((response) => {
+      const tabsContext = document.querySelector(selector);
+      const topicRoll = response.data.topics;
+      const tabsInfo = Tabs(topicRoll);
+      tabsContext.appendChild(tabsInfo);
+ })
 
 
   // TASK 4
